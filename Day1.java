@@ -26,6 +26,7 @@ public class Day1
             max = Math.max(temp,max);
         }
 
+        
         out.println(max);
         out.println(p);
         for(int i=0; i<3; i++)
