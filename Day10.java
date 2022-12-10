@@ -4,10 +4,13 @@ import static java.lang.System.out;
 
 public class Day10
 {
+    private static final boolean HIGH_CONTRAST_OUTPUT = false;
+
     static class Move
     {
         public String str;
         public int value;
+        public int size = 0;
 
         public Move(String s, int v)
         {
@@ -61,6 +64,7 @@ public class Day10
 
     public static int Instruction(List<Move> list)
     {
+        StringBuilder op = new StringBuilder();
         List<Integer> ans = new ArrayList<Integer>();
         int X = 1;
         int res = 0;
@@ -76,6 +80,8 @@ public class Day10
                     i++;
                     out.println("after " + cycle +  " cycle: " + X + " ans: " + X*cycle);
                 }
+                op.append(Math.abs(X - (cycle%40)) <=1 ? "#" :  ".");
+
             }
             else {
                 if(cycle == 20 + (40 * i)){
@@ -84,6 +90,7 @@ public class Day10
                     out.println("after " + cycle +  " cycle: " + X + " ans: " + X*cycle);
                 }
                 cycle++;
+                op.append(Math.abs(X - (cycle%40)) <=1 ? "#" :  ".");
                 if(cycle == 20 + (40 * i)){
                     ans.add(X*cycle);
                     i++;
@@ -96,6 +103,7 @@ public class Day10
                     out.println("after " + cycle +  " cycle: " + X + " ans: " + X*cycle);
                 }
                 X += l.value;
+                op.append(Math.abs(X - (cycle%40)) <=1 ? "#" :  ".");
             }
         }
         for(Integer x : ans)
@@ -104,6 +112,16 @@ public class Day10
         }
         out.println("cycle: " + cycle);
         out.println("res: " + res);
+
+        out.println("length: " + op.length());
+        // out.println(op);
+
+        String output = op.toString(); 
+        for(int a=0; a<output.length()/40; a++)
+        {
+            out.println(output.substring(a*40, (a+1) *40));
+        }
+
         return res;
     }
 }
