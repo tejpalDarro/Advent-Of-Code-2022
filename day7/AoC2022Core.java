@@ -13,3 +13,4 @@ public class AoC2022Core
 		new Day07();
 	}
 }
+ 
